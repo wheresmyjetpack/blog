@@ -4,3 +4,4 @@
 .env*
 .hanamirc
 /.rspec
+node_modules
