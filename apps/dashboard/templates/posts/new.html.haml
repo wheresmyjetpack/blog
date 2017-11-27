@@ -1,5 +1,7 @@
 .container
-  %h3 Write a Post
-  #root
+  %div.row
+    %div.col-12.col-md-8.offset-md-2
+      .display-4.mb-4 Write a Post
+      #root{'csrf-token' => token, 'action' => save_post_route}
 
 = javascript "#{ENV['ASSETS_HOST']}/posts_new.bundle"

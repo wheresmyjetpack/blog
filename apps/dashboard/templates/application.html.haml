@@ -4,9 +4,11 @@
     %title Web
     = favicon
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
+    = stylesheet 'http://cdn.quilljs.com/1.2.6/quill.snow.css'
     = stylesheet '../bootstrap-4.0.0-alpha.6/dist/css/bootstrap.min'
 
   %body
+    = render partial: 'navigation/navbar'
     = yield
 
   = javascript "../jquery-3.2.1.min"

@@ -1,0 +1,10 @@
+%nav.navbar.navbar-toggleable-sm.navbar-light.bg-faded
+  %button.navbar-toggler.navbar-toggler-right{'type': 'button', 'data-toggle': 'collapse', 'data-target': '#navbar-supported-content'}
+    %span.navbar-toggler-icon
+  %a.navbar-brand{'href': "#{routes.home_path}"}
+    Dashboard
+
+  #navbar-supported-content.collapse.navbar-collapse
+    .navbar-nav.mr-auto
+      %li.nav-item
+        %a.nav-link{'href': "#{routes.new_post_path}"} Write

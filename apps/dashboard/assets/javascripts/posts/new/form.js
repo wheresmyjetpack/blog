@@ -1,5 +1,7 @@
 import React from 'react';
 import PostTitle from './form_title'
+import PostBody from './body'
+import Submit from './form_submit'
 
 export default class BlogPostForm extends React.Component {
   constructor(props) {
@@ -7,22 +9,13 @@ export default class BlogPostForm extends React.Component {
     this.backgroundTitle = this.backgroundTitle.bind(this);
     this.foregroundTitle = this.foregroundTitle.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
+    this.updateBody = this.updateBody.bind(this);
     this.state = {
       hideTitleInput: false,
-      postTitle: ''
+      savePostEnabled: false,
+      postTitle: '',
+      postBody: ''
     };
-  }
-
-  render() {
-    return (
-      <FormBody
-        backgroundTitle={this.backgroundTitle}
-        foregroundTitle={this.foregroundTitle}
-        hideTitleInput={this.state.hideTitleInput}
-        postTitle={this.state.postTitle}
-        updateTitle={this.updateTitle}
-      />
-    );
   }
 
   backgroundTitle(e) {
@@ -40,21 +33,36 @@ export default class BlogPostForm extends React.Component {
   }
 
   updateTitle(e) {
-    this.setState({ postTitle: e.target.value });
+    let updates = { postTitle: e.target.value }
+    if (updates.postTitle === '')  {
+      updates.savePostEnabled = false;
+    } else {
+      updates.savePostEnabled = true;
+    }
+
+    this.setState(updates);
+  }
+
+  updateBody(value) {
+    this.setState({ postBody: value });
+  }
+
+  render() {
+    return (
+      <form className="form-control" action={this.props.action} method="POST">
+        <input type="hidden" name="_csrf_token" value={this.props.token} />
+        <
+          PostTitle
+          hide={this.state.hideTitleInput}
+          background={this.backgroundTitle}
+          foreground={this.foregroundTitle}
+          postTitle={this.state.postTitle}
+          update={this.updateTitle}
+        />
+        <PostBody text={this.state.postBody} handleChange={this.updateBody} />
+        <Submit enabled={this.state.savePostEnabled} />
+      </form>
+    );
   }
 }
 
-function FormBody(props) {
-  return (
-    <form className="form-inline">
-      <
-        PostTitle
-        hide={props.hideTitleInput}
-        background={props.backgroundTitle}
-        foreground={props.foregroundTitle}
-        postTitle={props.postTitle}
-        update={props.updateTitle}
-      />
-    </form>
-  );
-}

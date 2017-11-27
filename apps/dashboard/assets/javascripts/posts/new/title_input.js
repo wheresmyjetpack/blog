@@ -17,8 +17,8 @@ export default class TitleInput extends React.Component {
 
   render() {
     return (
-      <div className="form-group">
-        <label htmlFor="title" className="mr-sm-2"><small>Post Title</small></label>
+      <div className="form-group mb-sm-2">
+        <label htmlFor="title" className="mr-sm-2"><small><em>Post Title</em></small></label>
         <
           input
           type="text"
@@ -29,6 +29,7 @@ export default class TitleInput extends React.Component {
           onFocus={this.focusToEnd}
           value={this.props.postTitle}
           ref={(input) => { this.textInput = input }}
+          name="post[title]"
         />
       </div>
     );
