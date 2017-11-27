@@ -3,5 +3,7 @@
 
 .env*
 .hanamirc
+.babelrc
+.yarnclean
 /.rspec
 node_modules

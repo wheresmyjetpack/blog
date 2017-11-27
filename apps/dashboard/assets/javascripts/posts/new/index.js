@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PostForm from './form';
 
 ReactDOM.render(
-  <h1>Welcome to the dashboard</h1>,
+  <PostForm />,
   document.getElementById('root')
 );

@@ -4,11 +4,12 @@
     %title Web
     = favicon
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
-    = stylesheet 'bootstrap-4.0.0-alpha.6/dist/css/bootstrap.min'
+    = stylesheet '../bootstrap-4.0.0-alpha.6/dist/css/bootstrap.min'
+    = stylesheet '../animate'
 
   %body
     = yield
 
-  = javascript '../jquery-3.2.1.min.js', '../tether.min.js'
-  = javascript '../bootstrap-4.0.0-alpha.6/dist/js/bootstrap.min'
-  = javascript "#{ENV['ASSETS_HOST']}/home.bundle"
+  = javascript "../jquery-3.2.1.min"
+  = javascript "../tether.min"
+  = javascript "../bootstrap-4.0.0-alpha.6/dist/js/bootstrap.min"
