@@ -4,8 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     home: './assets/javascripts/home.js',
-    posts_new: './assets/javascripts/posts/new/index.js',
-    jquery: './assets/vendor/jquery.js'
+    posts_new: './assets/javascripts/posts/new/index.js'
   },
   output: {
     filename: '[name].bundle.js',
