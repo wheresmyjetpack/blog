@@ -20,16 +20,12 @@ export default class BlogPostForm extends React.Component {
 
   backgroundTitle(e) {
     if (this.state.postTitle !== '') {
-      this.setState((prevState, props) => ({
-        hideTitleInput: !prevState.hideTitleInput
-      }));
+      this.setState({ hideTitleInput: true });
     }
   }
 
   foregroundTitle(e) {
-    this.setState((prevState, props) => ({
-      hideTitleInput: !prevState.hideTitleInput
-    }));
+    this.setState({ hideTitleInput: false });
   }
 
   updateTitle(e) {
@@ -49,7 +45,7 @@ export default class BlogPostForm extends React.Component {
 
   render() {
     return (
-      <form className="form-control" action={this.props.action} method="POST">
+      <form className="form-control p-4" action={this.props.action} method="POST">
         <input type="hidden" name="_csrf_token" value={this.props.token} />
         <
           PostTitle

@@ -6,5 +6,5 @@ let root = document.getElementById('root');
 ReactDOM.render(
   <PostForm token={root.getAttribute('csrf-token')}
             action={root.getAttribute('action')} />,
-  root 
+  root
 );

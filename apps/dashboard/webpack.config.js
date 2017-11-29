@@ -3,8 +3,8 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    home: './assets/javascripts/home.js',
-    posts_new: './assets/javascripts/posts/new/index.js'
+    posts_new: './assets/javascripts/posts/new/index.js',
+    navbar: './assets/javascripts/navbar/index.js'
   },
   output: {
     filename: '[name].bundle.js',
