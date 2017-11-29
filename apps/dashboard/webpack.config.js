@@ -3,8 +3,9 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    posts_new: './assets/javascripts/posts/new/index.js',
-    navbar: './assets/javascripts/navbar/index.js'
+    app: './assets/index',
+    posts_new: './components/posts/new/index',
+    navbar: './components/navbar/index'
   },
   output: {
     filename: '[name].bundle.js',
@@ -18,7 +19,13 @@ module.exports = {
     allowedHosts: ['localhost']
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default']
+    })
   ],
   module: {
     rules: [
@@ -29,6 +36,40 @@ module.exports = {
           loader: 'babel-loader',
           options: { presets: ['env'] }
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ]
+              }
+            }
+          },
+          { loader: 'sass-loader' }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'less-loader' }
+        ]
       }
     ]
   }

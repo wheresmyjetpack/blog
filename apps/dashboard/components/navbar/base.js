@@ -10,7 +10,8 @@ class BaseNav extends React.Component {
     return (
       <Nav currentPage={this.props.currentPage}
            homePath={this.props.homePath}
-           newPostPath={this.props.newPostPath} />
+           newPostPath={this.props.newPostPath}
+           draftsPath={this.props.draftsPath} />
     );
   }
 }

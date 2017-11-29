@@ -4,4 +4,4 @@
       .display-4.mb-4 Write a Post
       %div#root{'csrf-token': token, 'action': save_post_route}
 
-= javascript "#{ENV['ASSETS_HOST']}/posts_new.bundle"
+= javascript "#{bundle_path}/posts_new.bundle"

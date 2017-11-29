@@ -2,14 +2,16 @@ import React from 'react';
 
 const Nav = (props) => {
   return (
-    <nav className="navbar navbar-toggleable-sm navbar-inverse bg-inverse fixed-top">
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+      <a className="navbar-brand" href={props.homePath}>Dashboard</a>
       <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-supported-content">
         <span className="navbar-toggler-icon"></span>
       </button>
-      <a className="navbar-brand" href={props.homePath}>Dashboard</a>
       <div id="navbar-supported-content" className="collapse navbar-collapse">
         <div className="navbar-nav mr-auto">
           <NavItem uri={props.newPostPath} anchor="Write"
+                   currentPage={props.currentPage} />
+          <NavItem uri={props.draftsPath} anchor="Drafts"
                    currentPage={props.currentPage} />
         </div>
       </div>

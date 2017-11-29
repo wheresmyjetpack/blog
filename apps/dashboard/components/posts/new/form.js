@@ -3,16 +3,11 @@ import PostTitle from './form_title'
 import PostBody from './body'
 import Submit from './form_submit'
 
+import './index.less'
+
 export default class BlogPostForm extends React.Component {
   constructor(props) {
     super(props);
-    this.backgroundTitle = this.backgroundTitle.bind(this);
-    this.foregroundTitle = this.foregroundTitle.bind(this);
-    this.updateTitle = this.updateTitle.bind(this);
-    this.updateBody = this.updateBody.bind(this);
-    this.savePost = this.savePost.bind(this);
-    this.handleResponse = this.handleResponse.bind(this);
-    this.toggleLoadingIcon = this.toggleLoadingIcon.bind(this);
     this.state = {
       hideTitleInput: false,
       savePostEnabled: false,
@@ -21,6 +16,16 @@ export default class BlogPostForm extends React.Component {
       hideAlert: false,
       showLoading: false
     };
+  }
+
+  autoSaveTimer() {
+    this.timer = setInterval(() => {
+      if (this.state.savePostEnabled) { this.savePost(); }
+    }, 60000)
+  }
+
+  clearTimer() {
+    clearInterval(this.timer);
   }
 
   backgroundTitle(e) {
@@ -48,16 +53,15 @@ export default class BlogPostForm extends React.Component {
     this.setState({ postBody: value });
   }
 
-  savePost(e) {
-    e.preventDefault();
+  savePost() {
     this.clearAlertText();
 
     $.ajax({
       url: this.props.action,
       method: 'POST',
       data: this.gatherFormData(),
-      beforeSend: this.toggleLoadingIcon
-    }).done(this.handleResponse);
+      beforeSend: this.toggleLoadingIcon.bind(this)
+    }).done(this.handleResponse.bind(this));
   }
 
   handleResponse(response) {
@@ -109,14 +113,16 @@ export default class BlogPostForm extends React.Component {
         <
           PostTitle
           hide={this.state.hideTitleInput}
-          background={this.backgroundTitle}
-          foreground={this.foregroundTitle}
+          background={this.backgroundTitle.bind(this)}
+          foreground={this.foregroundTitle.bind(this)}
           postTitle={this.state.postTitle}
-          update={this.updateTitle}
+          update={this.updateTitle.bind(this)}
         />
-        <PostBody text={this.state.postBody} handleChange={this.updateBody} />
+        <PostBody text={this.state.postBody} handleChange={this.updateBody.bind(this)} />
         <Submit hide={this.state.hideAlert}
-                savePost={this.savePost}
+                autoSave={this.autoSaveTimer.bind(this)}
+                clearAutoSave={this.clearTimer.bind(this)}
+                savePost={this.savePost.bind(this)}
                 enabled={this.state.savePostEnabled}
                 showLoading={this.state.showLoading}
                 postAlert={this.state.postAlert}/>

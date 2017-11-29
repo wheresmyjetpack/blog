@@ -4,18 +4,13 @@
     %title Web
     = favicon
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
+    = javascript "#{bundle_path}/app.bundle"
     = stylesheet 'http://cdn.quilljs.com/1.2.6/quill.snow.css'
-    = stylesheet '../bootstrap-4.0.0-alpha.6/dist/css/bootstrap.min'
     = stylesheet '../font-awesome-4.7.0/css/font-awesome.min.css'
-    = stylesheet 'main'
 
 
   %body
-    %div#nav-root{'home-path': routes.home_path, 'new-post-path': routes.new_post_path}
-    = javascript "#{ENV['ASSETS_HOST']}/navbar.bundle"
+    %div#nav-root{'home-path': routes.home_path, 'new-post-path': routes.new_post_path, 'drafts-path': routes.drafts_path}
+    = javascript "#{bundle_path}/navbar.bundle"
     %div{'style': 'padding-top: 70px;', 'role': 'main'}
       = yield
-
-  = javascript "../jquery-3.2.1.min"
-  = javascript "../tether.min"
-  = javascript "../bootstrap-4.0.0-alpha.6/dist/js/bootstrap.min"

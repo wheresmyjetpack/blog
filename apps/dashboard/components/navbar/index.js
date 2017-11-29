@@ -8,6 +8,7 @@ let requestUri = window.location.pathname;
 ReactDOM.render(
   <NavBar currentPage={requestUri}
           homePath={root.getAttribute('home-path')}
-          newPostPath={root.getAttribute('new-post-path')} />,
+          newPostPath={root.getAttribute('new-post-path')}
+          draftsPath={root.getAttribute('drafts-path')} />,
   root
 );
