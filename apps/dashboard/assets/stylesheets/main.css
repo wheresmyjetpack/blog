@@ -1,0 +1,9 @@
+.post-feedback {
+  -moz-transition: 2s;
+  transition: 2s;
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}

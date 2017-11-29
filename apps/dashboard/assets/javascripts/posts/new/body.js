@@ -8,7 +8,7 @@ const PostBody = (props) => {
       <ReactQuill value={props.text}
                   id="post-body"
                   onChange={props.handleChange} />
-      <input type="hidden" value={props.text} name="post[body]" />
+      <input type="hidden" value={props.text} name="post[] body" />
     </div>
   );
 }

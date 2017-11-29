@@ -7,7 +7,7 @@ module Dashboard::Views::Posts
     end
 
     def save_post_route
-      routes.create_post_path
+      Api.routes.save_post_path
     end
   end
 end

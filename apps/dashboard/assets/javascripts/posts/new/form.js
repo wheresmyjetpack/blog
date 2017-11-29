@@ -10,11 +10,16 @@ export default class BlogPostForm extends React.Component {
     this.foregroundTitle = this.foregroundTitle.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.updateBody = this.updateBody.bind(this);
+    this.savePost = this.savePost.bind(this);
+    this.handleResponse = this.handleResponse.bind(this);
+    this.toggleLoadingIcon = this.toggleLoadingIcon.bind(this);
     this.state = {
       hideTitleInput: false,
       savePostEnabled: false,
       postTitle: '',
-      postBody: ''
+      postBody: '',
+      hideAlert: false,
+      showLoading: false
     };
   }
 
@@ -43,10 +48,64 @@ export default class BlogPostForm extends React.Component {
     this.setState({ postBody: value });
   }
 
+  savePost(e) {
+    e.preventDefault();
+    this.clearAlertText();
+
+    $.ajax({
+      url: this.props.action,
+      method: 'POST',
+      data: this.gatherFormData(),
+      beforeSend: this.toggleLoadingIcon
+    }).done(this.handleResponse);
+  }
+
+  handleResponse(response) {
+    this.toggleLoadingIcon();
+    let updates = {};
+
+    if (this.state.id === undefined) {
+      updates.id = JSON.parse(response).id;
+    }
+
+    updates.postAlert = 'Post successfully saved';
+    this.setState(updates);
+    this.fadeOutAlert();
+  }
+
+  toggleLoadingIcon() {
+    this.setState((prevState, props) => {
+      return {
+        showLoading: !prevState.showLoading,
+        savePostEnabled: !prevState.savePostEnabled
+      };
+    });
+  }
+
+  clearAlertText() {
+    this.setState({ hideAlert: false, postAlert: '' });
+  }
+
+  fadeOutAlert() {
+    setTimeout(() => {
+      this.setState({ hideAlert: true });
+    }, 2000);
+  }
+
+  gatherFormData() {
+    return {
+      _csrf_token: this.props.token,
+      post: {
+        title: this.state.postTitle,
+        body: this.state.postBody,
+        id: this.state.id
+      }
+    }
+  }
+
   render() {
     return (
-      <form className="form-control p-4" action={this.props.action} method="POST">
-        <input type="hidden" name="_csrf_token" value={this.props.token} />
+      <form id="post-form" className="form-control p-4">
         <
           PostTitle
           hide={this.state.hideTitleInput}
@@ -56,7 +115,11 @@ export default class BlogPostForm extends React.Component {
           update={this.updateTitle}
         />
         <PostBody text={this.state.postBody} handleChange={this.updateBody} />
-        <Submit enabled={this.state.savePostEnabled} />
+        <Submit hide={this.state.hideAlert}
+                savePost={this.savePost}
+                enabled={this.state.savePostEnabled}
+                showLoading={this.state.showLoading}
+                postAlert={this.state.postAlert}/>
       </form>
     );
   }
