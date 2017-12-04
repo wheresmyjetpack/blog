@@ -5,7 +5,8 @@ module.exports = {
   entry: {
     app: './assets/index',
     posts_new: './components/posts/new/index',
-    navbar: './components/navbar/index'
+    navbar: './components/navbar/index',
+    drafts: './components/drafts/index'
   },
   output: {
     filename: '[name].bundle.js',
@@ -16,7 +17,10 @@ module.exports = {
   devServer: {
     contentBase: path.resolve('../../public/assets'),
     hot: true,
-    allowedHosts: ['localhost']
+    allowedHosts: ['localhost'],
+    headers: {
+      "Access-Control-Allow-Origin": '*'
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

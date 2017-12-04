@@ -284,7 +284,7 @@ module Dashboard
         default-src *;
         script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
         connect-src 'self' *;
-        img-src 'self' data: *;
+        img-src 'self' 'unsafe-inline' 'unsafe-eval' * data: *;
         style-src 'unsafe-inline' *;
         font-src 'self' *;
       )

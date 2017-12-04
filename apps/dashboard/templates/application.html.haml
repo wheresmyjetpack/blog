@@ -5,7 +5,6 @@
     = favicon
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
     = javascript "#{bundle_path}/app.bundle"
-    = stylesheet 'http://cdn.quilljs.com/1.2.6/quill.snow.css'
     = stylesheet '../font-awesome-4.7.0/css/font-awesome.min.css'
 
 
@@ -14,3 +13,4 @@
     = javascript "#{bundle_path}/navbar.bundle"
     %div{'style': 'padding-top: 70px;', 'role': 'main'}
       = yield
+    %div.mt-3

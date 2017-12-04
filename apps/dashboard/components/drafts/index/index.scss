@@ -1,0 +1,23 @@
+.parent-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.hidden-icon {
+  visibility: hidden;
+  opacity: 0;
+  transition: 1s;
+}
+
+a.edit-options:hover {
+  text-decoration: none; 
+}
+
+.grow:hover {
+  .hidden-icon {
+    visibility: visible;
+    opacity: 1;
+  }
+}

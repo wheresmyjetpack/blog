@@ -3,7 +3,7 @@ import PostTitle from './form_title'
 import PostBody from './body'
 import Submit from './form_submit'
 
-import './index.less'
+import './index.scss'
 
 export default class BlogPostForm extends React.Component {
   constructor(props) {

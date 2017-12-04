@@ -6,6 +6,7 @@ const PostBody = (props) => {
     <div className="form-group">
       <label htmlFor="post-body"><small><em>Body</em></small></label>
       <ReactQuill value={props.text}
+                  theme="snow"
                   id="post-body"
                   onChange={props.handleChange} />
       <input type="hidden" value={props.text} name="post[] body" />

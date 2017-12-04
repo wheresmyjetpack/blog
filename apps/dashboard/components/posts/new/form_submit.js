@@ -24,12 +24,12 @@ class SubmitPostButton extends React.Component {
 
     return (
       <div>
-      <button className={buttonClasses.join(' ')} type="submit" disabled={!this.props.enabled}
-              onClick={(e) => { e.preventDefault(); this.props.savePost(); }}>
-      <i className="fa fa-save"></i> Save
-      </button>
-      <i className={spinnerClasses.join(' ')}></i>
-      <small className={feedbackClasses.join(' ')}>{this.props.postAlert}</small>
+        <button className={buttonClasses.join(' ')} type="submit" disabled={!this.props.enabled}
+                onClick={(e) => { e.preventDefault(); this.props.savePost(); }}>
+          <i className="fa fa-save"></i> Save
+        </button>
+        <i className={spinnerClasses.join(' ')}></i>
+        <small className={feedbackClasses.join(' ')}>{this.props.postAlert}</small>
       </div>
     );
   }

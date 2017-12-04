@@ -1,6 +1,6 @@
-- drafts.each do |draft|
-  %div.container
-    %span.display-3
-      = draft.title
-    = draft.body
-    %hr
+.container
+  %div.row
+    %div.col-7.offset-sm-3
+      #root{drafts: drafts_list}
+
+= javascript "#{bundle_path}/drafts.bundle"

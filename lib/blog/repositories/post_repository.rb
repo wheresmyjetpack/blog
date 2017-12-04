@@ -4,6 +4,6 @@ class PostRepository < Hanami::Repository
   end
 
   def unpublished
-    posts.where { !published }
+    posts.where { !published }.order { created_at.desc }
   end
 end

@@ -1,0 +1,9 @@
+@import '../../../assets/stylesheets/transitions';
+
+.post-feedback {
+  @include transition-1;
+}
+
+.ql-editor {
+  min-height: 300px;
+}

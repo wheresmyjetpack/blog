@@ -1,0 +1,22 @@
+@mixin transition-1 {
+  -moz-transition: 2s;
+  transition: 2s;
+}
+
+@mixin transition-2 {
+  -moz-transition: 2s;
+  transition: 2s;
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.grow {
+  transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.1);
+}
